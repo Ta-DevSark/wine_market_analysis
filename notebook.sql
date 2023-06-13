@@ -1,11 +1,8 @@
 /*markdown
-Must-have features
-
 A complete market analysis report that answer to these questions:
 */
 
 /*markdown
-
     We want to highlight 10 wines to increase our sales, which ones should we choose and why?
 */
 
@@ -17,7 +14,6 @@ WHERE ratings_average > 4.5
 AND ratings_count > 40000
 ORDER BY ratings_average DESC, ratings_count DESC
 LIMIT(10);
-
 -- Because wines with a high rating average and 
 -- high ratings count indicate an important interest
 -- AND important customer satisfaction
@@ -33,10 +29,7 @@ ORDER BY users_count DESC;
 -- would impact more people there.
 
 /*markdown
-
     We would like to give a price to the best winery, which one should we choose and why?
-
-
 */
 
 SELECT name,
@@ -46,7 +39,6 @@ FROM wines
 WHERE ratings_average > 4.5
 AND ratings_count > 100000
 ORDER BY ratings_count DESC
-
 -- Cabernet Sauvignon has the 
 -- highest ratings with a rating count > 150 000.
 -- Strong indicator of high and steady quality.
@@ -65,7 +57,6 @@ ORDER BY ratings_count DESC
         cream
         citrus
         
-
 */
 
   SELECT name
@@ -77,43 +68,32 @@ ORDER BY ratings_count DESC
         'citrus'
         );
 
---   AND (group_name = lower('Coffee')
---         OR group_name = lower('Toast')
---         OR group_name = lower('Green apple')
---         OR group_name = lower('cream'),
---         OR group_name = lower('citrus'));
-        
-
 /*markdown
-    We would like to do a selection of wines that are easy to find all over the world. 
+We would like to do a selection of wines that are easy to find all over the world. 
     
     Find the top 3 most common grape all over the world and for each grape, give us the the 5 best rated wines.
-
 */
 
 
 
 /*markdown
-    We would like to create a country leaderboard, give us a visual that shows the average wine rating for each country. Do the same for the vintages.
+  We would like to create a country leaderboard, give us a visual that shows the average wine rating for each country. Do the same for the vintages.
     
+*/
 
+
+
+
+/*markdown
+Give us any other useful insights you found in our data. Be creative!
 */
 
 
 
 /*markdown
-    Give us any other useful insights you found in our data. Be creative!
-
-*/
-
-
-
-/*markdown
-
-Nice-to-have features
-
-    Optimise your solution to have the result as fast as possible.
+Optimise your solution to have the result as fast as possible.
     Better visualisation.
     One of our VIP client like Cabernet Sauvignon, he would like a top 5 recommandation, which wines would you recommend to him?
     Do any recommandation on ways to improve the data, the database schema or typing.
 */
+
