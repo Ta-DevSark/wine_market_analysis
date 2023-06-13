@@ -52,7 +52,13 @@ ORDER BY ratings_count DESC
 -- Strong indicator of high and steady quality.
 
 /*markdown
-    We have detected that a big cluster of customers like a specific combination of tastes. We have identified few primary keywords that matches this and we would like you to find all the wines that have those keywords. To ensure accuracy of our selection, ensure that more than 10 users confirmed those keywords. Also, identify the flavor_groups related to those keywords.
+    We have detected that a big cluster of 
+    customers like a specific combination of tastes. 
+    We have identified few primary keywords that matches this 
+    and we would like you to find all the wines that have those keywords. 
+    To ensure accuracy of our selection, ensure that more than 10 users 
+    confirmed those keywords. Also, identify the flavor_groups related to 
+    those keywords.
         Coffee
         Toast
         Green apple
