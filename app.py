@@ -16,6 +16,7 @@ sql_files = [
     'queries/list10.sql',
     'queries/marketing.sql',
     'queries/taste_keywords.sql',
+    'queries/flavor_count.sql',
     'queries/top3.sql',
     'queries/vintage_leaderboard.sql',
     'queries/wine_leaderboard.sql'
