@@ -1,26 +1,33 @@
 import sqlite3 as sq3
 import streamlit as st
+import pandas as pd
+from st_aggrid import GridOptionsBuilder, AgGrid
+from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 # Set page config and title
-st.set_page_config(page_title="Vivino Wine Data", page_icon=":wine_glass:", layout="wide")
-
-# ---- HEADER SECTION ----
-with st.container():
-    st.title("Wiwino :wine_glass:")
-    st.subheader("Great data on the greatest wines")
+st.set_page_config(page_title="Wiwino", page_icon=":wine_glass:", layout="wide")
 
 # Connect to the database
 conn = sq3.connect('vivino.db')
-
 # Create a cursor object to execute SQL queries
 cursor = conn.cursor()
+
+# Use local CSS
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+local_css("style/style.css")
+
+# ---- HEADER SECTION ----
+with st.container():
+    st.title("Welcome to Wiwino :wine_glass:")
+    st.subheader("Great data on the greatest wines")
 
 # Read SQL files and execute the queries
 sql_files = [
     'queries/best_winery.sql',
     'queries/list10.sql',
     'queries/marketing.sql',
-    'queries/taste_keywords.sql',
     'queries/flavor_count.sql',
     'queries/top3.sql',
     'queries/vintage_leaderboard.sql',
@@ -50,13 +57,36 @@ for file in sql_files:
     table = convert_to_table(result, cursor)
     st.table(table)
 
+data= pd.read_csv('queries/taste_keyw.csv', index_col=0)
+
+gb = GridOptionsBuilder.from_dataframe(data)
+gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
+gb.configure_side_bar() #Add a sidebar
+gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children") #Enable multi-row selection
+gridOptions = gb.build()
+
+grid_response = AgGrid(
+    data,
+    gridOptions=gridOptions,
+    data_return_mode='AS_INPUT', 
+    update_mode='MODEL_CHANGED', 
+    fit_columns_on_grid_load=False,
+    enable_enterprise_modules=True,
+    height=350, 
+    width='100%',
+    reload_data=True
+)
+
+data = grid_response['data']
+selected = grid_response['selected_rows'] 
+df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
+
 # ---- CONTACT ----
 with st.container():
     st.write("---")
-    st.header("Contact us !")
+    st.header("Suggestions ? Contact us !")
     st.write("##")
 
-    # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
     contact_form = """
     <form action="https://formsubmit.co/YOUR@MAIL.COM" method="POST">
         <input type="hidden" name="_captcha" value="false">

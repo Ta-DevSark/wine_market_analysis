@@ -1,4 +1,7 @@
-SELECT name, regions_count, users_count, wines_count
+SELECT name AS country, 
+    regions_count, 
+    users_count, 
+    wines_count
 FROM countries
 ORDER BY users_count DESC;
 -- The USA have the most users. The ad campaign 
